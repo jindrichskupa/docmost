@@ -53,8 +53,9 @@ export function parseRedisUrl(redisUrl: string): RedisConfig {
   if (familyParam && !isNaN(parseInt(familyParam))) {
     family = parseInt(familyParam, 10);
   }
+  const decodedPassword = password ? decodeURIComponent(password) : password;
 
-  return { host: hostname, port: portInt, password, db, family };
+  return { host: hostname, port: portInt, password: decodedPassword, db, family };
 }
 
 export function createRetryStrategy() {
